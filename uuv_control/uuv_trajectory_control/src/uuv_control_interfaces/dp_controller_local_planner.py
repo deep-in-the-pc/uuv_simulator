@@ -127,8 +127,10 @@ class DPControllerLocalPlanner(object):
         self.q_ned_to_enu = None
         if rospy.has_param('~inertial_frame_id'):
             self.inertial_frame_id = rospy.get_param('~inertial_frame_id')
+            print("Teste dp_controller_local_planner.py", self.inertial_frame_id)
             assert len(self.inertial_frame_id) > 0
-            assert self.inertial_frame_id in ['world', 'world_ned']
+            # assert self.inertial_frame_id in ['world', 'world_ned'] Removed to allow compatibility with
+            # robot_localization package
 
         self._logger.info('Inertial frame ID=' + self.inertial_frame_id)
 

@@ -45,7 +45,9 @@ class Vehicle(object):
 
     def __init__(self, inertial_frame_id='world'):
         """Class constructor."""
-        assert inertial_frame_id in ['world', 'world_ned']
+        # assert inertial_frame_id in ['world', 'world_ned'] Removed to allow compatibility with
+        # robot_localization package
+
         # Reading current namespace
         self._namespace = rospy.get_namespace()
 
@@ -53,10 +55,10 @@ class Vehicle(object):
         self._body_frame_id = None
         self._logger = get_logger()
 
-        if self._inertial_frame_id == 'world':
-            self._body_frame_id = 'base_link'
-        else:
+        if self._inertial_frame_id == 'world_ned':
             self._body_frame_id = 'base_link_ned'
+        else:
+            self._body_frame_id = 'base_link'
 
         try:
             import tf2_ros

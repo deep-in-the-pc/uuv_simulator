@@ -43,9 +43,10 @@ class Waypoint(object):
 
     def __init__(self, x=0, y=0, z=0, max_forward_speed=0, heading_offset=0,
         use_fixed_heading=False, inertial_frame_id='world', radius_acceptance=0.0):
-        assert inertial_frame_id in ['world', 'world_ned'], \
-            'Invalid inertial reference frame, options' \
-                ' are world or world_ned, provided={}'.format(inertial_frame_id)
+        # assert inertial_frame_id in ['world', 'world_ned'], \
+        #     'Invalid inertial reference frame, options' \
+        #         ' are world or world_ned, provided={}'.format(inertial_frame_id) Removed to allow compatibility with
+        #                                                                          robot_localization package
         self._x = x
         self._y = y
         self._z = z
@@ -76,7 +77,7 @@ class Waypoint(object):
 
     @inertial_frame_id.setter
     def inertial_frame_id(self, frame_id):
-        assert frame_id in ['world', 'world_ned']
+        # assert frame_id in ['world', 'world_ned'] Removed to allow compatibility with robot_localization package
         self._inertial_frame_id = frame_id
 
     @property

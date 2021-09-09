@@ -45,7 +45,8 @@ class WaypointSet(object):
     FAILED_WAYPOINT = [1.0, 0.0, 0.0]
 
     def __init__(self, scale=0.1, inertial_frame_id='world', max_surge_speed=None):
-        assert inertial_frame_id in ['world', 'world_ned']
+        # assert inertial_frame_id in ['world', 'world_ned'] Removed to allow compatibility with
+        # robot_localization package
         self._waypoints = list()
         self._violates_constraint = False
         self._scale = scale
@@ -99,8 +100,9 @@ class WaypointSet(object):
 
     @inertial_frame_id.setter
     def inertial_frame_id(self, frame_id):
-        assert frame_id in ['world', 'world_ned'], \
-            'Inertial reference frame can only be either world or world_ned'
+        # assert frame_id in ['world', 'world_ned'], \
+        #     'Inertial reference frame can only be either world or world_ned' Removed to allow compatibility with
+        #     robot_localization package
         self._inertial_frame_id = frame_id
 
     def clear_waypoints(self):
@@ -252,7 +254,8 @@ class WaypointSet(object):
                 else:
                     assert 'inertial_frame_id' in wps, 'Waypoint input has no inertial_frame_id key'
                     assert 'waypoints' in wps
-                    assert wps['inertial_frame_id'] in ['world', 'world_ned']
+                    # assert wps['inertial_frame_id'] in ['world', 'world_ned'] Removed to allow compatibility with
+                    # robot_localization package
                     self._inertial_frame_id = wps['inertial_frame_id']
                     for wp_data in wps['waypoints']:
                         wp = Waypoint(
